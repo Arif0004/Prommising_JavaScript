@@ -42,7 +42,7 @@ function getCertificate(){
     console.log('Preparing your certificate');
     const promise = new Promise(function(resolve){
         setTimeout(function(){
-            resolve('Congrats! you got the');
+            resolve('Congrats! you got the certificate');
     
         }, 1000);
 
@@ -52,14 +52,30 @@ function getCertificate(){
     
 }
 
-enroll()
-    .then(progress)
-    .then(getCertificate)
-    .then(function(value){
-        console.log(value);
+// enroll()
+//     .then(progress)
+//     .then(getCertificate)
+//     .then(function(value){
+//         console.log(value);
 
-    })
-    .catch(function(err){
+//     })
+//     .catch(function(err){
+//         console.log(err);
+
+//     });
+
+
+async function asyncAwait(){
+    try{
+        await enroll();
+        await progress();
+        const message = await getCertificate();
+        console.log(message);
+
+    }catch(err){
         console.log(err);
 
-    });
+    }
+}
+
+asyncAwait();
